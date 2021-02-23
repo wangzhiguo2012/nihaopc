@@ -28,6 +28,7 @@
 
 <script>
 import userLogin from '../../api/user.js'
+import {setUser } from '../../utils/storage.js'
 export default {
     name: 'LoginIndex',
     components:{},
@@ -76,6 +77,8 @@ export default {
             type:'success'
           })
           this.loginLoading = false
+          setUser(res.data.data)
+          this.$router.push('/')
         }).catche(err=>{
           this.$message.error('登录失败,手机号或验证码错误')
           this.loginLoading = false
@@ -107,7 +110,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: url('') no-repeat;
+  background:  no-repeat;
   background-size: cover;
   .login-form-wrap {
     min-width: 300px;
@@ -119,7 +122,7 @@ export default {
       .logo {
         width: 200px;
         height: 57px;
-        background: url('') no-repeat;
+        background:  no-repeat;
         background-size: contain;
       }
     }
