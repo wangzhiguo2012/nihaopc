@@ -79,7 +79,7 @@ export default {
           this.loginLoading = false
           setUser(res.data.data)
           this.$router.push('/')
-        }).catche(err=>{
+        }).catch(err=>{
           this.$message.error('登录失败,手机号或验证码错误')
           this.loginLoading = false
         })

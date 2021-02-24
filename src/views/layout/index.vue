@@ -73,7 +73,7 @@ import { delUser} from '../../utils/storage.js'
 export default {
     name: 'Layout',
     props: { },
-    data () {
+    data () { 
         return { 
             user:{},
             isCollapse:'false'
@@ -91,7 +91,7 @@ export default {
             })
         },
         hquit(){
-            rhis.$confirm('就走了','提示',{
+            this.$confirm('就走了','提示',{
                 confirmButtonText:'确定',
                 cancelButtonText:'取消',
                 type:'warning'
