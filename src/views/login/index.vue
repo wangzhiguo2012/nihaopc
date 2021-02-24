@@ -16,7 +16,7 @@
           </el-input>
         </el-form-item>
         <el-form-item prop="agree">
-          <el-checkbox v-model="checked">我已阅读并同意用户协议和隐私条框</el-checkbox>
+          <el-checkbox v-model="user.agree">我已阅读并同意用户协议和隐私条框</el-checkbox>
         </el-form-item>
         <el-form-item>
           <el-button class="login-btn" type="primary" @click="hLogin" :loading='loginLoading'>登录</el-button>
@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import userLogin from '../../api/user.js'
+import { userLogin }from '../../api/user.js'
 import {setUser } from '../../utils/storage.js'
 export default {
     name: 'LoginIndex',
@@ -68,10 +68,26 @@ export default {
         }
     },
     methods:{
-      login(){
-        this.loginLoading = true
-       userLogin(this.user.mobile,this.user.code
-       ).then(res=>{
+      // login(){
+      //   this.loginLoading = true
+      //  userLogin(this.user.mobile,this.user.code
+      //  ).then(res=>{
+      //     this.$message({
+      //       message:'登录成功',
+      //       type:'success'
+      //     })
+      //     this.loginLoading = false
+      //     setUser(res.data.data)
+      //     this.$router.push('/')
+      //   }).catch(err=>{
+      //     this.$message.error('登录失败,手机号或验证码错误')
+      //     this.loginLoading = false
+      //   })
+      // },
+      async login(){
+        this.loginloading = false
+        try {
+          const result = await userLogin(this.user.mobile,this.user.code)
           this.$message({
             message:'登录成功',
             type:'success'
@@ -79,15 +95,15 @@ export default {
           this.loginLoading = false
           setUser(res.data.data)
           this.$router.push('/')
-        }).catch(err=>{
-          this.$message.error('登录失败,手机号或验证码错误')
+        }catch {
+          this.$message.error('登录失败，手机号或验证码错误')
           this.loginLoading = false
-        })
+        }
       },
       hLogin(){
-        this.$refs.myform.validator(vaild=>{
+        this.$refs.myform.validate(vaild=>{
           if(vaild){
-            this.userLogin()
+            this.login()
           }
         })
       }

@@ -46,7 +46,7 @@
         <el-container>
             <el-header class="header">
                 <div>
-                    <i :class="isCollapse?'el-icon-s-fold':'el-icon-s-unfold'" @click="hSwitch"></i>
+                    <i :class="isCollapse?'el-icon-s-fold':'el-icon-s-unfold'" @click="isCollapse = !isCollapse"></i>
                     <span>你好啊，亲</span>
                 </div>
                 <el-dropdown>
@@ -76,7 +76,7 @@ export default {
     data () { 
         return { 
             user:{},
-            isCollapse:'false'
+            isCollapse:false
         }
     },
     methods:{
@@ -90,7 +90,7 @@ export default {
                 }
             })
         },
-        hquit(){
+        hQuit(){
             this.$confirm('就走了','提示',{
                 confirmButtonText:'确定',
                 cancelButtonText:'取消',

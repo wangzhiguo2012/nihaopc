@@ -4,8 +4,10 @@ import Login from '../views/login/index.vue'
 import Layout from '../views/layout/index.vue'
 import { getUser } from '../utils/storage.js'
 import Articles from '../views/articles/index.vue'
-import addArticles from '../views/articles/add.vue'
+import AddArticles from '../views/articles/add.vue'
 import NotFound from '../views/page404/index.vue'
+import EditArticles from '../views/articles/edit.vue'
+import Image from '../views/image/index.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -13,7 +15,9 @@ const routes = [
  {path:'/',component:Layout,
   children:[
     {path:'/articles',component:Articles},
-    {path:'/addArticle',component:addArticles}
+    {path:'/addArticle',component:AddArticles},
+    {path:'editArticle/:id',component:EditArticles},
+    {path:'image',component:Image}
   ]
   },
   {path:'*',component:NotFound}
